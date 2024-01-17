@@ -21,12 +21,6 @@ class UserService {
       const result = await db.Users.findAll({
         where: { [columnName]: columnValue },
         order: [["createdAt", "DESC"]],
-        include: [
-          {model: db.Admins},
-          {model: db.Clients},
-          {model: db.Parents},
-          {model: db.Teachers},
-      ],
       });
       if (result.length === 0) throw new Error("Email not found")
       if (result) return { result };
@@ -38,12 +32,6 @@ class UserService {
         const result = await db.Users.findAll({
           where: {'clientId':clientId,'role':role },
           order: [["createdAt", "DESC"]],
-          include: [
-            {model: db.Admins},
-            {model: db.Clients},
-            {model: db.Parents},
-            {model: db.Teachers},
-        ],
         });
         if (result.length === 0) throw new Error("Email not found")
         if (result) return { result };
@@ -94,12 +82,6 @@ class UserService {
       await catchError(async () => {
         const result = await db.Users.findByPk(id, {
           order: [["createdAt", "DESC"]],
-          include: [
-              {model: db.Admins},
-              {model: db.Clients},
-              {model: db.Parents},
-              {model: db.Teachers},
-          ],
       });
       if (result) return { result };
       else throw new Error();

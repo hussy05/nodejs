@@ -166,7 +166,7 @@ module.exports = class {
         .status(500)
         .json({ success: false, message: "data not found." });
     } else {
-      res.json({ success: true, admins: data.result });
+      res.json({ success: true, Users: data.result });
     }
   }
   // Get By Id
@@ -178,7 +178,7 @@ module.exports = class {
       if (data.error) {
         res.status(200).json({ success: false, message: "Not found." });
       } else {
-        res.status(200).json({ success: true, admin: data.result });
+        res.status(200).json({ success: true, User: data.result });
       }
     } else {
       res
@@ -194,12 +194,6 @@ module.exports = class {
       res
         .status(200)
         .json({ success: false, message: "Please provide an email." });
-      return;
-    }
-    if (!role) {
-      res
-        .status(200)
-        .json({ success: false, message: "Please provide an role." });
       return;
     }
 
